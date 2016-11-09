@@ -1,5 +1,5 @@
 {
-  "name": "test2",
+  "name": "minato",
   "version": "0.0.1",
   "scripts": {
     "riot:watch": "riot -w src/tag/ src/tag/",
