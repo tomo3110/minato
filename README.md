@@ -1,6 +1,4 @@
-# test2 (0.0.1)
-
-Your web application better boilerplate
+# Minato (0.0.1)
 
 ### Running your project
 
