@@ -193,7 +193,6 @@ class Store {
     try {
       const
         provider = new firebase.auth.GoogleAuthProvider(),
-        provider.addScope('https://tomo3110.github.io/minato');
         resolt = await this.auth.signInWithPopup(provider)
           .catch(err => {
             throw err;
