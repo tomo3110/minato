@@ -7,42 +7,17 @@ import Store from './store';
 import '../tag/wiki-nav';
 import '../tag/wiki-content';
 
-const
-  navlist = [
-    {label: 'NEW', icon: 'fa-pencil', url: '#NEW'},
-    {label: 'HOME', icon: 'fa-home', url: '#HOME'},
-    {label: 'POSTS', icon: 'fa-newspaper-o', url: '#POSTS'},
-    {label: 'CONFIG', icon: 'fa-cog', url: '#CONFIG'}
-  ],
-  posts = [
-    {
-      photo_url: '',
-      user_url: '',
-      category: 'hello/world',
-      title: 'Hello,World',
-      url: 'POSTS/hello/world/Riot',
-      last_update_user: 'hoge',
-      last_update_user_url: ''
-    }, {
-      photo_url: '',
-      user_url: '',
-      category: 'public/howto',
-      title: 'Riot',
-      url: 'POSTS/public/howto/Riot',
-      last_update_user: 'tomokazu',
-      last_update_user_url: ''
-    }
-  ];
+const navlist = [
+  {label: 'NEW', icon: 'fa-pencil', url: '#NEW'},
+  {label: 'HOME', icon: 'fa-home', url: '#HOME'},
+  {label: 'POSTS', icon: 'fa-newspaper-o', url: '#POSTS'},
+  {label: 'CONFIG', icon: 'fa-cog', url: '#CONFIG'}
+];
 
 (async () => {
+  const config = await fetch('firebase.json').then(res => res.json());
 
-  const store = Store.getInstance({
-    apiKey: "AIzaSyAsazPHiujSwixz7hGv5x_SDYEo68hJ64c",
-    authDomain: "mysampleapp-5b5db.firebaseapp.com",
-    databaseURL: "https://mysampleapp-5b5db.firebaseio.com",
-    storageBucket: "mysampleapp-5b5db.appspot.com",
-    messagingSenderId: "162101395061"
-  });
+  const store = Store.getInstance(config);
 
   RiotControl.addStore(store);
 

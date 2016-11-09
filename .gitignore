@@ -6,3 +6,4 @@ npm-debug.log
 src/tag/**/*.js
 src/assets
 .DS_Store
+src/firebase.json
