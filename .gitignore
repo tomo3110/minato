@@ -6,3 +6,4 @@ npm-debug.log
 !.gitkeep
 src/tag/**/*.js
 src/assets
+.DS_Store
