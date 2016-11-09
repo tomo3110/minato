@@ -21,7 +21,8 @@ const navlist = [
 
   RiotControl.addStore(store);
 
-  const res = await store.init();
+  await store.init();
+
   riot.mount('wiki-nav', {navlist: navlist, store: store});
   riot.mount('wiki-content', {store: store});
 })();
