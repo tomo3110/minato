@@ -18,7 +18,7 @@ module.exports = [
       bundle: './src/scripts/main.js'
     },
     output: {
-      path: path.join(__dirname, 'dest/assets/scripts'),
+      path: path.join(__dirname, 'docs/assets/scripts'),
       filename: '[name].js'
     },
     resolve: {
@@ -52,7 +52,7 @@ module.exports = [
       bundle: './src/styles/main.scss'
     },
     output: {
-      path: path.join(__dirname, 'dest/assets/styles'),
+      path: path.join(__dirname, 'docs/assets/styles'),
       filename: '[name].css'
     },
     resolve: {
@@ -109,7 +109,7 @@ module.exports = [
       index: './src/index.html'
     },
     output: {
-      path: path.join(__dirname, 'dest'),
+      path: path.join(__dirname, 'docs'),
       filename: '[name].html'
     },
     plugins: [
