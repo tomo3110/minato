@@ -1,0 +1,23 @@
+@import "bower_components/skeleton-sass/skeleton_template";
+
+$fa-font-path: "../../node_modules/font-awesome/fonts";
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/highlight.js/styles/xcode";
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Regular.ttf') format('truetype'),
+       url('../fonts/Raleway-Light.ttf') format('truetype'),
+       url('../fonts/Raleway-Medium.ttf') format('truetype');
+}
+
+body {
+  background-color: #0094ff; //#55a0f7;
+  &.app {
+    display: flex;
+    overflow: hidden;
+  }
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+}

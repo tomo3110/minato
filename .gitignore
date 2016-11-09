@@ -1,0 +1,8 @@
+node_modules
+dest
+.tmp
+bower_components
+npm-debug.log
+!.gitkeep
+src/tag/**/*.js
+src/assets

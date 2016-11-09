@@ -1,0 +1,16 @@
+{
+  "presets": [
+    "es2017",
+    "es2015-riot"
+  ],
+  "plugins": [
+    "transform-runtime"
+  ],
+  "env": {
+    "development": {
+      "presets": [
+        "power-assert"
+      ]
+    }
+  }
+}
