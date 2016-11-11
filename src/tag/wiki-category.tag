@@ -1,9 +1,29 @@
 <wiki-category>
   <ul class='category-list'>
-    <li class='category-item' each={ item in opts.category }>
-      <a style='font-size: { this.parent.opts.fontsize || "2rem" }'>{ item }</a>
+    <li class='category-item' each={ item in category }>
+      <a href='#HOME?tree={ item.href }' style='font-size: { parent.opts.fontsize || "2rem" }'>{ item.label }</a>
     </li>
   </ul>
+
+  <script>
+    this.on('update', () => {
+      this.category = this.categoryListCreate(opts.category);
+    });
+
+    categoryListCreate(list = [], resolt = [], hrefArr = []) {
+      if (list.length) {
+        const item = list.shift();
+        hrefArr.push(item);
+        resolt.push({
+          label: item,
+          href: encodeURIComponent(hrefArr.join('/'))
+        });
+        return this.categoryListCreate(list, resolt, hrefArr);
+      } else {
+        return resolt;
+      }
+    }
+  </script>
 
   <style scoped>
     :scope ul.category-list {

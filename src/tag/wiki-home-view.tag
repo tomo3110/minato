@@ -5,8 +5,12 @@ import './wiki-dir';
   <wiki-search></wiki-search>
   <section class='home-content'>
     <wiki-dir store={ opts.store }></wiki-dir>
-    <wiki-posts-list posts={ [] }></wiki-posts-list>
+    <wiki-posts-list posts={ opts.list }></wiki-posts-list>
   </section>
+
+  <script>
+    console.log(opts.list);
+  </script>
 
   <style scoped>
     :scope {
