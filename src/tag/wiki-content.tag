@@ -117,6 +117,7 @@ import './wiki-new-post';
         templateList,
         key: ''
       });
+    });
     riot.route('HOME..', () => {
       const q = riot.route.query();
       const targetWikiList = opts.store.content.searchByURL(decodeURIComponent(q.tree)).map((post, i) => {

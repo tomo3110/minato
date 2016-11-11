@@ -1,3 +1,4 @@
+<<<<<<< 50ce4dec2922e6e86262ebe4c4c9553292affacf
 import RiotControl from 'riotcontrol';
 
 <wiki-dir-item>
@@ -5,17 +6,37 @@ import RiotControl from 'riotcontrol';
   <ul class='dir-children' if={ isView }>
     <li class='dir-child' each={ label in keys }>
       <wiki-dir-item label={ label } values={ parent.values.get(label) } tree={ parent.tree } index={ parent.index }></wiki-dir-item>
+=======
+<wiki-dir-item>
+  <a href='#HOME?tree={ href }' class='dir-item'>{opts.label}</a>
+  <ul class='dir-children' if={ isView }>
+    {isView}
+    <li class='dir-child' each={ label in keys }>
+      <wiki-dir-item label={ label } values={ parent.values.get(label) } query={ parent.query }>
+      </wiki-dir-item>
+>>>>>>> add home-view dir
     </li>
   </ul>
 
   <script>
     this.on('update', () => {
+<<<<<<< 50ce4dec2922e6e86262ebe4c4c9553292affacf
       this.index = opts.index + 1;
       this.tree = opts.tree || [];
       this.values = opts.values;
       this.keys = opts.values.keySeq().filter(key => !/^_/.test(key)).toJS();
       this.href = opts.values.get('_href');
       this.isView = (this.tree[opts.index] === opts.label);
+=======
+      this.keys = opts.values.keySeq().filter(key => !/^_/.test(key)).toJS();
+      this.href = opts.values.get('_href');
+      this.values = opts.values;
+      riot.route('*..', () => {
+        const q = riot.route.query();
+        const reg = new RegExp(`^${q.tree}`, 'g');
+        this.isView = reg.test(this.href);
+      });
+>>>>>>> add home-view dir
     });
   </script>
 
