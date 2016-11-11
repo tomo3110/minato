@@ -3,6 +3,7 @@ import './wiki-tab-view';
 import './wiki-posts-view';
 import './wiki-edit-view';
 import './wiki-home-view';
+import './wiki-visual';
 
 <wiki-content>
   <wiki-spinner></wiki-spinner>
@@ -15,6 +16,9 @@ import './wiki-home-view';
   </style>
 
   <script>
+    riot.route(() => {
+      riot.mount('wiki-content', 'wiki-visual');
+    });
     riot.route('*', (local, id) => {
       switch (local) {
         case 'NEW': {
@@ -30,7 +34,23 @@ import './wiki-home-view';
           break;
         }
         case 'HOME': {
-          riot.mount('wiki-content', 'wiki-home-view', {store: opts.store});
+          const postList = opts.store.content.list.map((post, i) => {
+            const
+              dirArr = post.title.split('/'),
+              title = dirArr.pop(),
+              category = dirArr;
+            return {
+              title,
+              category,
+              isWip: post.isWip,
+              url: `POSTS/${post.key}`,
+              photo_url: post.history.call(0).auth.photo_url,
+              last_update_user: post.history.call().auth.name,
+              update_user_url: '',
+              user_url: ''
+            }
+          });
+          riot.mount('wiki-content', 'wiki-home-view', {store: opts.store, list: postList.sort().toJS()});
           break;
         }
         case 'POSTS': {
@@ -79,6 +99,26 @@ import './wiki-home-view';
           key: (targetWiki.get('key') || '')
         });
       }
+    });
+    riot.route('*..', () => {
+      const q = riot.route.query();
+      const targetWikiList = opts.store.content.searchByURL(decodeURIComponent(q.tree)).map((post, i) => {
+        const
+          dirArr = post.title.split('/'),
+          title = dirArr.pop(),
+          category = dirArr;
+        return {
+          title,
+          category,
+          isWip: post.isWip,
+          url: `POSTS/${post.key}`,
+          photo_url: post.history.call(0).auth.photo_url,
+          last_update_user: post.history.call().auth.name,
+          update_user_url: '',
+          user_url: ''
+        }
+      });
+      riot.mount('wiki-content', 'wiki-home-view', {store: opts.store, list: targetWikiList.sort().toJS()});
     });
 
     riot.route.start();

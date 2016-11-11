@@ -14,11 +14,8 @@ class WikiListModel extends WikiListRecord {
     riot.observable(this);
   }
   searchByURL(url) {
-    if (this.list.count(item => item.title === url)) {
-      return this.list.find(item => item.title == url);
-    } else {
-      return false;
-    }
+    const reg = new RegExp(`^${url}`, 'g');
+    return this.list.filter(item => item.title.match(reg));
   }
   searchByID(index) {
     return this.list.get(index);

@@ -17,6 +17,7 @@ import './wiki-modal';
 
     login(e) {
       opts.store.signIn().then(res => {
+        opts.store.user = res;
         this.update();
       });
     }
