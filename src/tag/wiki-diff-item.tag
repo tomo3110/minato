@@ -33,8 +33,7 @@ import './wiki-user-photo';
     this.mixin('control');
 
     const diff = diffLines(opts.oldstr || '', opts.newstr);
-
-    this.updateDate = moment(opts.update).format('YYYY-MM-DD');
+    this.updateDate = moment(opts.update).format('YYYY-MM-DD hh:mm:ss a');
     this.isView = false;
 
     this.on('update', () => {
