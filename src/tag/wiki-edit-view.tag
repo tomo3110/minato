@@ -20,7 +20,7 @@ import './wiki-post-header';
       height='75vh'
       mode='markdown'
       value={ opts.edit }
-      is-word-wrap={ true }>
+      is-word-wrap='true'>
     </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
@@ -39,7 +39,7 @@ import './wiki-post-header';
     this.edit = opts.edit;
 
     this.on('history_update', data => {
-      this.tags['wiki-ace-editor'].braceEditor.setValue(data.edit);
+      console.log(this.tags['wiki-monaca-editor'].editor);
     });
 
     edited(value) {

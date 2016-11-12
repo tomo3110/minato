@@ -28,7 +28,7 @@ module.exports = [
       new BowerWebpackPlugin(),
       new webpack.NoErrorsPlugin(),
       new webpack.ProvidePlugin({
-        riot: 'riot'
+        riot: 'riot/riot.min.js'
       }),
       new CopyWebpackPlugin([
         {

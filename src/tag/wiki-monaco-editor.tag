@@ -23,6 +23,7 @@
   }
 
   initMonaco() {
+    console.log(opts['is-word-wrap']);
     if (window.monaco) {
       this.editor = window.monaco.editor.create(this.MonacoEditor, {
         value: opts.value,

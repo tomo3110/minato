@@ -4,7 +4,7 @@
   "scripts": {
     "riot:watch": "riot -w src/tag/ src/tag/",
     "riot:build": "riot src/tag/ src/tag/",
-    "start": "webpack && browser-sync start --config bs-config.js & webpack --watch & npm run riot:watch",
+    "start": "webpack && browser-sync start --config bs-config.js & webpack --watch",
     "build": "npm run riot:build && webpack --display-error-details",
     "deploy": "npm run riot:build && webpack -p --config webpack.production.js",
     "watch": "webpack --watch -d & npm run riot:watch",
@@ -25,7 +25,7 @@
     "moment": "^2.15.1",
     "monaco-editor": "^0.7.0",
     "mousetrap": "^1.6.0",
-    "riot": "^2.5.0",
+    "riot": "^2.6.7",
     "riotcontrol": "0.0.3"
   },
   "devDependencies": {
@@ -46,7 +46,7 @@
     "file-loader": "^0.9.0",
     "html-loader": "^0.4.3",
     "mocha": "^3.0.2",
-    "node-sass": "^3.10.0",
+    "node-sass": "^3.11.3",
     "power-assert": "^1.4.1",
     "sass-loader": "^4.0.0",
     "url-loader": "^0.5.7",
