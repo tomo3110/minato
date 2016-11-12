@@ -4,7 +4,7 @@ import 'brace/theme/chrome';
 
 import RiotControl from 'riotcontrol';
 
-import './wiki-ace-editor';
+import './wiki-monaco-editor';
 import './wiki-markdown-preview';
 import './wiki-post-header';
 
@@ -15,16 +15,13 @@ import './wiki-post-header';
       value={ title }
       oninput={ inputTitle }
       placeholder='category.. / Title' />
-    <wiki-ace-editor
+    <wiki-monaco-editor
       width='100%'
       height='75vh'
-      theme='chrome'
       mode='markdown'
-      wrapenabled='true'
       value={ opts.edit }
-      changed={ edited }
-      tabSize='2'>
-    </wiki-ace-editor>
+      is-word-wrap={ true }>
+    </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
       <button type='button' class='ship' onclick={ saveShipIt }>ship it!</button>
