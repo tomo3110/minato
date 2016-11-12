@@ -1,28 +1,21 @@
 import { fromJS } from 'immutable';
+import RiotControl from 'riotcontrol';
+
 import './wiki-dir-item';
 
 <wiki-dir>
-  <a href='#HOME' class='dir-root'>README</a>
+  <a href='#HOME' class='dir-root'>ROOT</a>
   <ul class='dir'>
     <li each={ label in keys } class='dir-item'>
-      <wiki-dir-item label={ label } values={ parent.map.get(label) } query={ parent.query }></wiki-dir-item>
+      <wiki-dir-item label={ label } values={ parent.map.get(label) } tree={ parent.tree } index={ parent.index }></wiki-dir-item>
     </li>
   </ul>
 
   <script>
+    this.index = 0;
 
-    riot.route('*..', () => {
-      const q = riot.route.query();
-      this.query = q.tree.split('/');
-      this.update();
-    });
-
-    this.list = [
-      'test/post/投稿テスト',
-      'test/hello/world',
-      'bug/ace editorの日本語入力',
-      'blog/大学/卒論の環境について'
-    ];
+    this.tree = opts.tree || [];
+    this.list = opts.dir;
 
     const res = this.list.map(title => title.split('/'));
 
@@ -46,7 +39,6 @@ import './wiki-dir-item';
     res.forEach(titleArr => {
       this.dirCreate(titleArr, [], resolt);
     });
-    console.log(resolt);
 
     this.map = fromJS(resolt);
     this.keys = this.map.keySeq().toJS();
@@ -71,8 +63,8 @@ import './wiki-dir-item';
       margin: 0;
       text-decoration: none;
       cursor: pointer;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
       color: #777;
