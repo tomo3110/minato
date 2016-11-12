@@ -22,7 +22,7 @@ module.exports = [
     },
     resolve: {
       modulesDirctories: ['bower_components', 'node_modules', 'web_modules'],
-      extensions: ['', '.test.js', '.js','.json', '.tag']
+      extensions: ['', '.test.js', '.js','.json']
     },
     plugins: [
       new BowerWebpackPlugin(),
