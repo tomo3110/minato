@@ -23,6 +23,7 @@
     "immutable": "^3.8.1",
     "marked": "^0.3.6",
     "moment": "^2.15.1",
+    "monaco-editor": "^0.7.0",
     "mousetrap": "^1.6.0",
     "riot": "^2.5.0",
     "riotcontrol": "0.0.3"
