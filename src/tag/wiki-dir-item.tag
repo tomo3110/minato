@@ -1,23 +1,21 @@
+import RiotControl from 'riotcontrol';
+
 <wiki-dir-item>
-  <a href='#HOME?tree={ href }' class='dir-item'>{opts.label}</a>
+  <a href='#HOME?tree={href}' class='dir-item'>{opts.label}</a>
   <ul class='dir-children' if={ isView }>
-    {isView}
     <li class='dir-child' each={ label in keys }>
-      <wiki-dir-item label={ label } values={ parent.values.get(label) } query={ parent.query }>
-      </wiki-dir-item>
+      <wiki-dir-item label={ label } values={ parent.values.get(label) } tree={ parent.tree } index={ parent.index }></wiki-dir-item>
     </li>
   </ul>
 
   <script>
     this.on('update', () => {
+      this.index = opts.index + 1;
+      this.tree = opts.tree || [];
+      this.values = opts.values;
       this.keys = opts.values.keySeq().filter(key => !/^_/.test(key)).toJS();
       this.href = opts.values.get('_href');
-      this.values = opts.values;
-      riot.route('*..', () => {
-        const q = riot.route.query();
-        const reg = new RegExp(`^${q.tree}`, 'g');
-        this.isView = reg.test(this.href);
-      });
+      this.isView = (this.tree[opts.index] === opts.label);
     });
   </script>
 
