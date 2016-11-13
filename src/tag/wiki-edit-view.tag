@@ -1,10 +1,6 @@
-import brace from 'brace';
-import 'brace/mode/markdown';
-import 'brace/theme/chrome';
-
 import RiotControl from 'riotcontrol';
 
-import './wiki-ace-editor';
+import './wiki-monaco-editor';
 import './wiki-markdown-preview';
 import './wiki-post-header';
 
@@ -15,16 +11,20 @@ import './wiki-post-header';
       value={ title }
       oninput={ inputTitle }
       placeholder='category.. / Title' />
-    <wiki-ace-editor
+    <wiki-monaco-editor
       width='100%'
       height='75vh'
-      theme='chrome'
       mode='markdown'
-      wrapenabled='true'
       value={ opts.edit }
-      changed={ edited }
-      tabSize='2'>
-    </wiki-ace-editor>
+      is-code-lens='false'
+      line-numbers='false'
+      is-automatic-layout='true'
+      is-control-characters='true'
+      is-indent-guides='true'
+      is-whitespace='all'
+      is-word-wrap='true'
+      on-change={ edited }>
+    </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
       <button type='button' class='ship' onclick={ saveShipIt }>ship it!</button>
@@ -42,11 +42,11 @@ import './wiki-post-header';
     this.edit = opts.edit;
 
     this.on('history_update', data => {
-      this.tags['wiki-ace-editor'].braceEditor.setValue(data.edit);
+      this.tags['wiki-monaco-editor'].editor.setValue(data.edit);
     });
 
     edited(value) {
-      this.edit = value
+      this.edit = value;
       RiotControl.trigger('update_edit', {
         title: this.title_input.value,
         edit: this.edit,

@@ -34,7 +34,7 @@ import './wiki-home-view';
           break;
         }
         case 'POSTS': {
-          const postList = opts.store.content.list.map((post, i) => {
+          const postList = opts.store.content.list.map(post => {
             const
               dirArr = post.title.split('/'),
               title = dirArr.pop(),
@@ -43,7 +43,7 @@ import './wiki-home-view';
               title,
               category,
               isWip: post.isWip,
-              url: `POSTS/${i}`,
+              url: `POSTS/${post.key}`,
               photo_url: post.history.call(0).auth.photo_url,
               last_update_user: post.history.call().auth.name,
               update_user_url: '',
@@ -66,8 +66,8 @@ import './wiki-home-view';
         }
       }
     });
-    riot.route('*/*', (local, id) => {
-      const targetWiki = opts.store.content.searchByID(id);
+    riot.route('POSTS/*', key => {
+      const targetWiki = opts.store.content.searchByKey(key);
       if (targetWiki) {
         opts.store.edit = targetWiki.history.call().text;
         opts.store.title = targetWiki.get('title');

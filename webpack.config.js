@@ -2,6 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var BowerWebpackPlugin = require("bower-webpack-plugin");
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
@@ -27,8 +28,14 @@ module.exports = [
       new BowerWebpackPlugin(),
       new webpack.NoErrorsPlugin(),
       new webpack.ProvidePlugin({
-        riot: 'riot'
+        riot: 'riot/riot.min.js'
       }),
+      new CopyWebpackPlugin([
+        {
+          from: 'node_modules/monaco-editor/dev/vs',
+          to: 'vs'
+        }
+      ]),
       devFlagPlugin
     ],
     module: {

@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-import riot from 'riot';
 import RiotControl from 'riotcontrol';
 
 import Store from './store';
