@@ -18,10 +18,12 @@ import './wiki-post-header';
       value={ opts.edit }
       is-code-lens='false'
       line-numbers='false'
+      is-automatic-layout='true'
       is-control-characters='true'
       is-indent-guides='true'
       is-whitespace='all'
-      is-word-wrap='true'>
+      is-word-wrap='true'
+      on-change={ edited }>
     </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
@@ -40,11 +42,11 @@ import './wiki-post-header';
     this.edit = opts.edit;
 
     this.on('history_update', data => {
-      console.log(this.tags['wiki-monaca-editor'].editor);
+      this.tags['wiki-monaco-editor'].editor.setValue(data.edit);
     });
 
     edited(value) {
-      this.edit = value
+      this.edit = value;
       RiotControl.trigger('update_edit', {
         title: this.title_input.value,
         edit: this.edit,

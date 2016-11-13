@@ -10,14 +10,21 @@
         loaderScript.addEventListener('load', this.onAmdLoader);
         document.body.appendChild(loaderScript);
       } else {
-        this.onAmdLoader();
+        if (!this.editor) {
+          this.initMonaco();
+        }
       }
     });
 
     onAmdLoader() {
       window.require.config({ paths: { 'vs': 'assets/scripts/vs' }});
-      window.require(['vs/editor/editor.main'], () => {
-        this.initMonaco();
+      window.require(['vs/editor/editor.main'], () => console.log('module load complete'));
+    }
+
+    evenChange() {
+      this.editor.onDidChangeModelContent(event => {
+        const value = this.editor.getValue();
+          opts.onChange(value, event);
       });
     }
 
@@ -73,18 +80,15 @@
           wrappingColumn: opts.wrappingColumn || 300,
           wrappingIndent: opts.wrappingIndent || 'none'
         });
+        this.evenChange();
       }
     }
   </script>
 
   <style scoped>
-    :scope {
-      display: flex;
-    }
     :scope section#MonacoEditor {
       border: solid thin #ccc;
-      border-radius: 2px;
-      padding: 0.5rem;
+      border-radius: 4px;
     }
   </style>
 </wiki-monaco-editor>
