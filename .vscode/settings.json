@@ -1,0 +1,17 @@
+// 既定の設定とユーザー設定を上書きするには、このファイル内に設定を挿入します
+{
+    "editor.fontFamily": "Ricty, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "editor.tabSize": 2,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": true,
+    "editor.renderIndentGuides": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "src/tag/*.js": true
+    }
+}

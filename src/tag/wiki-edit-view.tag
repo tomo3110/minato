@@ -1,7 +1,3 @@
-import brace from 'brace';
-import 'brace/mode/markdown';
-import 'brace/theme/chrome';
-
 import RiotControl from 'riotcontrol';
 
 import './wiki-monaco-editor';
@@ -20,6 +16,11 @@ import './wiki-post-header';
       height='75vh'
       mode='markdown'
       value={ opts.edit }
+      is-code-lens='false'
+      line-numbers='false'
+      is-control-characters='true'
+      is-indent-guides='true'
+      is-whitespace='all'
       is-word-wrap='true'>
     </wiki-monaco-editor>
     <section class='save-buttons'>

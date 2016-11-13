@@ -2,9 +2,9 @@
   "name": "minato",
   "version": "0.0.1",
   "scripts": {
-    "riot:watch": "riot -w src/tag/ src/tag/",
-    "riot:build": "riot src/tag/ src/tag/",
-    "start": "webpack && browser-sync start --config bs-config.js & webpack --watch",
+    "riot:watch": "riot -w src/tag/",
+    "riot:build": "riot src/tag/",
+    "start": "webpack && browser-sync start --config bs-config.js & webpack --watch & riot -w src/tag/",
     "build": "npm run riot:build && webpack --display-error-details",
     "deploy": "npm run riot:build && webpack -p --config webpack.production.js",
     "watch": "webpack --watch -d & npm run riot:watch",
