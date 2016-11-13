@@ -1,6 +1,7 @@
 import RiotControl from 'riotcontrol';
 
-import './wiki-monaco-editor';
+<!--import './wiki-monaco-editor';-->
+import './wiki-post-textarea';
 import './wiki-markdown-preview';
 import './wiki-post-header';
 
@@ -11,7 +12,13 @@ import './wiki-post-header';
       value={ title }
       oninput={ inputTitle }
       placeholder='category.. / Title' />
-    <wiki-monaco-editor
+    <wiki-post-textarea
+      value={ edit }
+      width='100%'
+      height='75vh'
+      on-change={ edited }>
+    </wiki-post-textarea>
+    <!--<wiki-monaco-editor
       width='100%'
       height='75vh'
       mode='markdown'
@@ -23,20 +30,21 @@ import './wiki-post-header';
       is-indent-guides='true'
       is-whitespace='all'
       is-word-wrap='true'
-      on-change={ edited }>
+      on-change={ edited }>-->
     </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
       <button type='button' class='ship' onclick={ saveShipIt }>ship it!</button>
     </section>
   </section>
-  <section class='wiki-preview'>
+  <section name='preview' class='wiki-preview'>
     <wiki-post-header dir={ title }></wiki-post-header>
     <wiki-markdown-preview name='previewElement' value={ edit }></wiki-markdown-preview>
   </section>
 
   <script>
     RiotControl.addStore(this);
+    this.mixin('scrollSync');
 
     this.title = opts.title;
     this.edit = opts.edit;
@@ -45,8 +53,15 @@ import './wiki-post-header';
       this.tags['wiki-monaco-editor'].editor.setValue(data.edit);
     });
 
+    this.on('scroll_sync', rate => {
+      this.getScrollRate(this.preview);
+      const resolt = this.maxScrollTop * rate;
+      this.preview.scrollTop = resolt;
+    });
+
     edited(value) {
       this.edit = value;
+      console.log(value);
       RiotControl.trigger('update_edit', {
         title: this.title_input.value,
         edit: this.edit,
