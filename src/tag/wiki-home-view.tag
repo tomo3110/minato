@@ -5,7 +5,9 @@ import './wiki-dir';
   <wiki-search></wiki-search>
   <section class='home-content'>
     <wiki-dir dir={ dir } tree={ tree }></wiki-dir>
-    <wiki-posts-list posts={ opts.list }></wiki-posts-list>
+    <section class='home-posts-list'>
+      <wiki-posts-list posts={ opts.list }></wiki-posts-list>
+    </section>
   </section>
 
   <script>
@@ -23,13 +25,16 @@ import './wiki-dir';
       border-bottom: solid thin #aaa;
     }
     :scope section.home-content {
-      display: flex;
       flex:1;
+      display: flex;
     }
-    :scope wiki-posts-list {
+    :scope .home-posts-list {
       flex: 3;
       margin: 1.5rem;
+      height: 90vh;
       overflow: scroll;
+    }
+    :scope wiki-posts-list {
     }
     :scope wiki-dir {
       flex: 1;

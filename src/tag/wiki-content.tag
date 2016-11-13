@@ -135,7 +135,7 @@ import './wiki-new-post';
           user_url: ''
         }
       });
-      const tree = q.tree.split('%2F');
+      const tree = decodeURIComponent(q.tree).split('/');
       riot.mount('wiki-content', 'wiki-home-view', {store: opts.store, list: targetWikiList.sort().toJS(), tree: tree});
     });
 
