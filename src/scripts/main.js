@@ -3,6 +3,9 @@ import RiotControl from 'riotcontrol';
 
 import Store from './store';
 
+import controlMixin from './mixin/control';
+import scrollSyncMixin from './mixin/scrollSync';
+
 import '../tag/wiki-nav';
 import '../tag/wiki-content';
 
@@ -19,6 +22,9 @@ const navlist = [
   const store = Store.getInstance(config);
 
   RiotControl.addStore(store);
+
+  riot.mixin('control', controlMixin);
+  riot.mixin('scrollSync', scrollSyncMixin);
 
   await store.init();
 

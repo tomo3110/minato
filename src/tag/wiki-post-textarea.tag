@@ -1,6 +1,3 @@
-import RiotControl from 'riotcontrol';
-import '../scripts/mixin/scrollSync';
-
 <wiki-post-textarea>
   <textarea id='postTextarea'
     style='width: { opts.width }; height: { opts.height };'
@@ -9,6 +6,7 @@ import '../scripts/mixin/scrollSync';
   </textarea>
 
   <script>
+    this.mixin('control');
     this.mixin('scrollSync');
     this.on('mount', () => {
       this.postTextarea.value = opts.value;
@@ -21,7 +19,7 @@ import '../scripts/mixin/scrollSync';
 
     scrolled(e) {
       const rate = this.getScrollRate(this.postTextarea);
-      RiotControl.trigger('scroll_sync', rate);
+      this.control.trigger('scroll_sync', rate);
     }
 
   </script>

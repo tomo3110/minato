@@ -30,7 +30,10 @@ import './wiki-user-photo';
   </section>
 
   <script>
+    this.mixin('control');
+
     const diff = diffLines(opts.oldstr || '', opts.newstr);
+
     this.updateDate = moment(opts.update).format('YYYY-MM-DD');
     this.isView = false;
 
@@ -60,7 +63,7 @@ import './wiki-user-photo';
       this.update();
     }
     rollback(e) {
-      RiotControl.trigger('history_rollback', {index: opts.index, key: opts.key});
+      this.control.trigger('history_rollback', {index: opts.index, key: opts.key});
     }
   </script>
 
