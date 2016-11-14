@@ -1,6 +1,6 @@
 const templateMixin = {
   getTemplateList(wikiList = []) {
-    const reg = new RegExp(/tamplate/, 'g');
+    const reg = new RegExp(/^tamplate/, 'g');
     return wikiList.filter(wiki => wiki.title.match(reg));
   },
   parseTempate(str = '') {
