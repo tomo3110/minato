@@ -57,7 +57,7 @@ class Store {
           });
           this.save(this.wikiRef, resolt.toBackEnd(), resolt.get('key')).catch(e => console.error(e));
         } else {
-          if (this.user) throw Error('Login is required to update.');
+          if (!this.user) throw Error('Login is required to update.');
           console.log('新規');
           const postWiki = new WikiModel(data);
           const resolt = postWiki.save({
