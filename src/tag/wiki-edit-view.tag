@@ -1,6 +1,5 @@
 import RiotControl from 'riotcontrol';
 
-<!--import './wiki-monaco-editor';-->
 import './wiki-post-textarea';
 import './wiki-markdown-preview';
 import './wiki-post-header';
@@ -18,20 +17,6 @@ import './wiki-post-header';
       height='75vh'
       on-change={ edited }>
     </wiki-post-textarea>
-    <!--<wiki-monaco-editor
-      width='100%'
-      height='75vh'
-      mode='markdown'
-      value={ opts.edit }
-      is-code-lens='false'
-      line-numbers='false'
-      is-automatic-layout='true'
-      is-control-characters='true'
-      is-indent-guides='true'
-      is-whitespace='all'
-      is-word-wrap='true'
-      on-change={ edited }>-->
-    </wiki-monaco-editor>
     <section class='save-buttons'>
       <button type='button' class='wip' onclick={ saveWip }>save as wip</button>
       <button type='button' class='ship' onclick={ saveShipIt }>ship it!</button>
@@ -61,7 +46,6 @@ import './wiki-post-header';
 
     edited(value) {
       this.edit = value;
-      console.log(value);
       RiotControl.trigger('update_edit', {
         title: this.title_input.value,
         edit: this.edit,

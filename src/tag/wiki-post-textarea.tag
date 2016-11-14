@@ -34,6 +34,8 @@ import '../scripts/mixin/scrollSync';
       flex: 1;
       padding: 1rem;
       border: solid thin #ccc;
+      line-height: 2.5rem;
+      resize: none;
     }
   </style>
 </wiki-post-textarea>
