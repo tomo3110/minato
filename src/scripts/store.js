@@ -178,7 +178,7 @@ class Store {
     });
   }
 
-  async postComment(comment, key) {
+  async postComment(comment = '', key = '') {
     if (comment.length && this.user) {
       return await this.commentsRef.push({
         key: key,

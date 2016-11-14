@@ -1,9 +1,9 @@
-import { Record, List, fromJS } from 'immutable';
+import { Record, List } from 'immutable';
 
 const HistoryRecord = Record({ list: List() });
 
 class HistoryModel extends HistoryRecord {
-  constructor(data = "[]") {
+  constructor(data = '[]') {
     super({ list: List(data)  });
   }
   register(data) {
