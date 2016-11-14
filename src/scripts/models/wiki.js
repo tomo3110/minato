@@ -1,8 +1,6 @@
-// import riot from 'riot';
 import {
   Record,
-  List,
-  Map
+  List
 } from 'immutable';
 
 import HistoryModel from './history';
@@ -21,12 +19,11 @@ class WikiModel extends WikiRecord {
     super({
       key: key || null,
       title: data.title || '',
-      tags: List(JSON.parse(data.tags || "[]")),
+      tags: List(JSON.parse(data.tags || '[]')),
       history: new HistoryModel().fromString(data.history),
       isWip: data.isWip,
       create: data.create || new Date().toString()
     });
-    // riot.observable(this);
   }
   save(data) {
     if (data.auth) {
@@ -62,7 +59,7 @@ class WikiModel extends WikiRecord {
       tags: JSON.stringify(this.get('tags')),
       isWip: isWip,
       create: this.get('create')
-    }
+    };
   }
 }
 

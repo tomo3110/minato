@@ -5,6 +5,9 @@
         "es6": true,
         "node": true
     },
+    "globals": {
+        "riot": true
+    },
     "extends": "eslint:recommended",
     "parserOptions": {
         "sourceType": "module"
@@ -25,6 +28,11 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "arrow-parens": [
+            "error",
+            "always"
+        ],
+        "no-var": "error"
     }
 }
