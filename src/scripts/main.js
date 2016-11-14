@@ -5,6 +5,7 @@ import Store from './store';
 
 import controlMixin from './mixin/control';
 import scrollSyncMixin from './mixin/scrollSync';
+import templateMixin from './mixin/template';
 
 import '../tag/wiki-nav';
 import '../tag/wiki-content';
@@ -25,6 +26,7 @@ const navlist = [
 
   riot.mixin('control', controlMixin);
   riot.mixin('scrollSync', scrollSyncMixin);
+  riot.mixin('template', templateMixin);
 
   await store.init();
 

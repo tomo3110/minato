@@ -3,6 +3,7 @@ import './wiki-tab-view';
 import './wiki-posts-view';
 import './wiki-edit-view';
 import './wiki-home-view';
+import './wiki-new-post';
 
 <wiki-content>
   <wiki-spinner></wiki-spinner>
@@ -15,17 +16,16 @@ import './wiki-home-view';
   </style>
 
   <script>
-    riot.route('*', (local, id) => {
+    this.mixin('template');
+    riot.route('*', local => {
       switch (local) {
         case 'NEW': {
           opts.store.edit = '';
           opts.store.title = '';
-          riot.mount('wiki-content', 'wiki-tab-view', {
+          riot.mount('wiki-content', 'wiki-new-post', {
             edit: opts.store.edit,
             title: opts.store.title,
-            comments: opts.store.comments.get('list').toJS(),
-            key: '',
-            tabIndex: 1
+            key: ''
           });
           break;
         }
@@ -79,6 +79,22 @@ import './wiki-home-view';
           key: (targetWiki.get('key') || '')
         });
       }
+    });
+    riot.route('NEW..', () => {
+      const q = riot.route.query();
+      if (q.template_post_key) {
+        const targetWiki = opts.store.content.searchByKey(q.template_post_key);
+        opts.store.edit = this.parseTempate(targetWiki.history.call().text);
+        opts.store.title = this.parseTempate(targetWiki.get('title'));
+      } else {
+        opts.store.edit = '';
+        opts.store.title = '';
+      }
+      riot.mount('wiki-content', 'wiki-new-post', {
+        edit: opts.store.edit,
+        title: opts.store.title,
+        key: ''
+      });
     });
 
     riot.route.start();
