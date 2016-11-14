@@ -1,4 +1,4 @@
-const scrollSync = {
+const scrollSyncMixin = {
   getScrollRate(targetElement) {
     const rect = targetElement.getBoundingClientRect();  
     this.scrollTop = targetElement.scrollTop;
@@ -8,4 +8,4 @@ const scrollSync = {
   }
 };
 
-riot.mixin('scrollSync', scrollSync);
+export default scrollSyncMixin;

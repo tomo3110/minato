@@ -1,5 +1,4 @@
 import './wiki-user-photo';
-import RiotControl from 'riotcontrol';
 
 <wiki-comment-list>
   <ul class='comment-list'>
@@ -13,7 +12,8 @@ import RiotControl from 'riotcontrol';
   </ul>
 
   <script>
-    RiotControl.addStore(this);
+    this.mixin('control');
+    this.control.addStore(this);
 
     this.on('update', () => {
       this.list = opts.list.filter(item => item.key === opts.key);

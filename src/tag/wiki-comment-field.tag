@@ -1,5 +1,4 @@
 import './wiki-user-photo';
-import RiotControl from 'riotcontrol';
 
 <wiki-comment-field>
   <wiki-user-photo src={ opts.photo_src } size='50px'></wiki-user-photo>
@@ -9,9 +8,11 @@ import RiotControl from 'riotcontrol';
   </form>
 
   <script>
+    this.mixin('control');
+
     onsubmit(e) {
       e.preventDefault();
-      RiotControl.trigger('comment-post', {comment: this.comment_input.value, key: opts.key});
+      this.control.trigger('comment-post', {comment: this.comment_input.value, key: opts.key});
       this.comment_input.value = '';
     }
   </script>

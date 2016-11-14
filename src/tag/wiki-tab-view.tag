@@ -32,7 +32,8 @@ import './wiki-comment-list';
   <wiki-history-view show={ tabIndex == 2 } history={ history } key={ opts.key }></wiki-history-view>
 
   <script>
-    RiotControl.addStore(this);
+    this.mixin('control');
+    this.control.addStore(this);
 
     this.tabIndex = opts.tabIndex || 0;
     this.comments = opts.comments;

@@ -1,5 +1,3 @@
-import RiotControl from 'riotcontrol';
-
 import './wiki-post-textarea';
 import './wiki-markdown-preview';
 import './wiki-post-header';
@@ -28,8 +26,10 @@ import './wiki-post-header';
   </section>
 
   <script>
-    RiotControl.addStore(this);
+    this.mixin('control');
     this.mixin('scrollSync');
+
+    this.control.addStore(this);
 
     this.title = opts.title;
     this.edit = opts.edit;
@@ -46,7 +46,7 @@ import './wiki-post-header';
 
     edited(value) {
       this.edit = value;
-      RiotControl.trigger('update_edit', {
+      this.control.trigger('update_edit', {
         title: this.title_input.value,
         edit: this.edit,
         key: opts.key
@@ -56,7 +56,7 @@ import './wiki-post-header';
 
     inputTitle(e) {
       this.title = this.title_input.value;
-      RiotControl.trigger('update_edit', {
+      this.control.trigger('update_edit', {
         title: this.title,
         edit: this.edit,
         key: opts.key
@@ -64,14 +64,14 @@ import './wiki-post-header';
     }
 
     saveWip() {
-      RiotControl.trigger('save_wip', {
+      this.control.trigger('save_wip', {
         title: this.title,
         edit: this.edit,
         key: opts.key
       });
     }
     saveShipIt() {
-      RiotControl.trigger('save_shipIt', {
+      this.control.trigger('save_shipIt', {
         title: this.title,
         edit: this.edit,
         key: opts.key
