@@ -1,7 +1,7 @@
-import './wiki-edit-view';
+import './wiki-new-edit-view';
 
 <wiki-new-post>
-  <wiki-edit-view edit={ edit } title={ title } key={ opts.key }></wiki-edit-view>
+  <wiki-new-edit-view edit='{ edit }' title='{ title }' key='{ opts.key }' options='{ options }'></wiki-new-edit-view>
 
   <script>
     this.mixin('control');
@@ -9,6 +9,7 @@ import './wiki-edit-view';
 
     this.title = opts.title;
     this.edit = opts.edit;
+    this.options = opts.templateList || [];
 
     this.on('update_edit', data => {
       this.title = data.title;
@@ -22,11 +23,10 @@ import './wiki-edit-view';
       flex-direction: column;
       padding-left: 3.5rem;
       padding-right: 2rem;
+      padding-top: 1rem;
     }
     :scope wiki-edit-view {
       height: 100vh;
-      margin-top: 1rem;
-      overflow: scroll;
     }
   </style>
 </wiki-new-post>

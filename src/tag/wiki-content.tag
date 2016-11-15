@@ -17,14 +17,18 @@ import './wiki-new-post';
 
   <script>
     this.mixin('template');
+
     riot.route('*', local => {
       switch (local) {
         case 'NEW': {
+          const templateList = this.getTemplateList(opts.store.content.list.toJS());
+          console.log(templateList);
           opts.store.edit = '';
           opts.store.title = '';
           riot.mount('wiki-content', 'wiki-new-post', {
             edit: opts.store.edit,
             title: opts.store.title,
+            templateList,
             key: ''
           });
           break;
@@ -82,10 +86,11 @@ import './wiki-new-post';
     });
     riot.route('NEW..', () => {
       const q = riot.route.query();
+      const templateList = this.getTemplateList(opts.store.content.list.toJS());
       if (q.template_post_key) {
         const targetWiki = opts.store.content.searchByKey(q.template_post_key);
         opts.store.edit = this.parseTempate(targetWiki.history.call().text);
-        opts.store.title = this.parseTempate(targetWiki.get('title'));
+        opts.store.title = this.parseTempate(targetWiki.get('title').replace( /^template\//, ''));
       } else {
         opts.store.edit = '';
         opts.store.title = '';
@@ -93,6 +98,7 @@ import './wiki-new-post';
       riot.mount('wiki-content', 'wiki-new-post', {
         edit: opts.store.edit,
         title: opts.store.title,
+        templateList,
         key: ''
       });
     });
