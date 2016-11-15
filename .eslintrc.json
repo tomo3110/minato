@@ -31,7 +31,7 @@
         ],
         "arrow-parens": [
             "error",
-            "always"
+            "as-needed"
         ],
         "no-var": "error"
     }
