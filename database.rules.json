@@ -1,0 +1,12 @@
+{
+  "rules": {
+    "comments": {
+      ".read": true,
+      ".write": "auth != null"
+    },
+    "wiki": {
+      ".read": true,
+      ".write": "auth != null"
+    }
+  }
+}

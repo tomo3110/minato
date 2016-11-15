@@ -1,0 +1,14 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /Users/saitoutomokazu/.nodebrew/node/v6.9.1/bin/node /Users/saitoutomokazu/.nodebrew/current/bin/firebase serve
+[debug] CLI Version:  3.1.0
+[debug] Platform:     darwin
+[debug] Node Version: v6.9.1
+[debug] Time:         Wed Nov 16 2016 02:16:57 GMT+0900 (JST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /Users/saitoutomokazu/Desktop/test2
+[info] Public Directory: docs
+[info] 
+[info] Server listening at: http://localhost:5000

@@ -18,7 +18,7 @@ const navlist = [
 ];
 
 (async () => {
-  const config = await fetch('firebase.json').then(res => res.json());
+  const config = await fetch('firebase.config.json').then(res => res.json());
 
   const store = Store.getInstance(config);
 
