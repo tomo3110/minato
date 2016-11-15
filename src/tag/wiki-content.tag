@@ -22,7 +22,6 @@ import './wiki-new-post';
       switch (local) {
         case 'NEW': {
           const templateList = this.getTemplateList(opts.store.content.list.toJS());
-          console.log(templateList);
           opts.store.edit = '';
           opts.store.title = '';
           riot.mount('wiki-content', 'wiki-new-post', {
