@@ -7,3 +7,5 @@ src/tag/**/*.js
 src/assets
 .DS_Store
 firebase.json
+firebase.config.json
+.firebaserc

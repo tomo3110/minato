@@ -1,5 +1,3 @@
-import RiotControl from 'riotcontrol';
-
 import './wiki-dir';
 import './wiki-button-group';
 import './wiki-edit-view';

@@ -90,17 +90,15 @@ import './wiki-select-box';
       display: flex;
     }
     :scope .wiki-preview {
-      flex: 1;
+      width: 50%;
       height: 90vh;
       overflow: scroll;
-      padding: 0.5rem;
       margin: 0;
       margin-left: 1.5rem;
     }
     :scope .wiki-edit {
-      flex: 1;
+      width: 50%;
       height: 90vh;
-      padding: 0.5rem;
       margin: 0;
       margin-right: 1.5rem;
     }
@@ -116,7 +114,7 @@ import './wiki-select-box';
       margin-left: 1rem;
     }
     :scope .save-buttons > wiki-select-box {
-      flex: 1;
+      width: 100%;
     }
     :scope button.wip {
       border: solid thin #0094ff;

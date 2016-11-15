@@ -3,7 +3,7 @@ const templateMixin = {
     const res = wikiList.filter(wiki => wiki.title.indexOf('template') != -1);
     return res.map(wiki => {
       return {
-        label: wiki.title,
+        label: this.parseTempate(wiki.title),
         value: wiki.key
       };
     });
@@ -11,18 +11,21 @@ const templateMixin = {
   parseTempate(str = '') {
     const // 
       yearDate = this.toDoubleDigits(new Date().getFullYear()),
-      monthDate = this.toDoubleDigits(new Date().getMonth()),
-      dayDate = this.toDoubleDigits(new Date().getDay());
+      monthDate = this.toDoubleDigits(new Date().getMonth() + 1),
+      dayDate = this.toDoubleDigits(new Date().getDate()),
+      weekDate = this.getWeek();
     
     const // 
       yearReg = new RegExp(/%{Year}/, 'g'),
       monthReg = new RegExp(/%{month}/, 'g'),
-      dayReg = new RegExp(/%{day}/, 'g');
+      dayReg = new RegExp(/%{day}/, 'g'),
+      weekReg = new RegExp(/%{week}/, 'g');
     
     return str
       .replace(yearReg, yearDate)
       .replace(monthReg, monthDate)
-      .replace(dayReg, dayDate);
+      .replace(dayReg, dayDate)
+      .replace(weekReg, weekDate);
   },
   toDoubleDigits(num = 1) {
     const numStr = num + '';
@@ -31,6 +34,12 @@ const templateMixin = {
     } else {
       return numStr;
     }
+  },
+  getWeek() {
+    const weeklist = [
+      'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
+    ];
+    return weeklist[new Date().getDay()];
   }
 };
 

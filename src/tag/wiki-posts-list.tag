@@ -23,7 +23,8 @@ import './wiki-user-photo';
     }
     :scope ul.post-list {
       flex: 1;
-      display: flex;
+      height: 90vh;
+      overflow: scroll;
       flex-direction: column;
     }
     :scope li.posts-item {

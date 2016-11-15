@@ -22,7 +22,6 @@ import './wiki-new-post';
       switch (local) {
         case 'NEW': {
           const templateList = this.getTemplateList(opts.store.content.list.toJS());
-          console.log(templateList);
           opts.store.edit = '';
           opts.store.title = '';
           riot.mount('wiki-content', 'wiki-new-post', {
@@ -34,7 +33,23 @@ import './wiki-new-post';
           break;
         }
         case 'HOME': {
-          riot.mount('wiki-content', 'wiki-home-view', {store: opts.store});
+          const postList = opts.store.content.list.map((post, i) => {
+            const
+              dirArr = post.title.split('/'),
+              title = dirArr.pop(),
+              category = dirArr;
+            return {
+              title,
+              category,
+              isWip: post.isWip,
+              url: `POSTS/${post.key}`,
+              photo_url: post.history.call(0).auth.photo_url,
+              last_update_user: post.history.call().auth.name,
+              update_user_url: '',
+              user_url: ''
+            }
+          });
+          riot.mount('wiki-content', 'wiki-home-view', {store: opts.store, list: postList.sort().toJS()});
           break;
         }
         case 'POSTS': {
@@ -101,6 +116,27 @@ import './wiki-new-post';
         templateList,
         key: ''
       });
+    });
+    riot.route('HOME..', () => {
+      const q = riot.route.query();
+      const targetWikiList = opts.store.content.searchByURL(decodeURIComponent(q.tree)).map((post, i) => {
+        const
+          dirArr = post.title.split('/'),
+          title = dirArr.pop(),
+          category = dirArr;
+        return {
+          title,
+          category,
+          isWip: post.isWip,
+          url: `POSTS/${post.key}`,
+          photo_url: post.history.call(0).auth.photo_url,
+          last_update_user: post.history.call().auth.name,
+          update_user_url: '',
+          user_url: ''
+        }
+      });
+      const tree = decodeURIComponent(q.tree).split('/');
+      riot.mount('wiki-content', 'wiki-home-view', {store: opts.store, list: targetWikiList.sort().toJS(), tree: tree});
     });
 
     riot.route.start();

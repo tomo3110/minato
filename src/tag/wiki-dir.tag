@@ -1,64 +1,80 @@
-import {
-  Map
-} from 'immutable';
+import { fromJS } from 'immutable';
+import RiotControl from 'riotcontrol';
+
+import './wiki-dir-item';
 
 <wiki-dir>
+  <a href='#HOME' class='dir-root'>ROOT</a>
+  <ul class='dir'>
+    <li each={ label in keys } class='dir-item'>
+      <wiki-dir-item label={ label } values={ parent.map.get(label) } tree={ parent.tree } index={ parent.index }></wiki-dir-item>
+    </li>
+  </ul>
 
   <script>
-    let resolt = {};
-    let test = opts.store.content.list.map(item => item.title);
-    let test1 = test.map(url => url.split('/')).toJS();
-    let arr1 = test1[0];
-    console.log(arr1);
+    this.index = 0;
 
-    testfunc(arr = [], obj = {}) {
-      const item = arr.shift();
-      let next = obj[item] = {};
-      if (arr.length) {
-        return this.testfunc(arr, next);
-      } else {
+    this.tree = opts.tree || [];
+    this.list = opts.dir;
+
+    const res = this.list.map(title => title.split('/'));
+
+    dirCreate(ref = [],  href = [], obj = {}) {
+      if (ref.length === 0) {
         return obj;
+      } else {
+        const url = ref.shift();
+        href.push(url);
+        if (typeof obj[url] === 'undefined') {
+          obj[url] = {};
+          obj[url]['_href'] = encodeURIComponent(href.join('/'));
+          return this.dirCreate(ref, href, obj[url]);
+        } else if (typeof obj[url] === 'object') {
+          return this.dirCreate(ref, href, obj[url]);
+        }
       }
     }
 
-    let test2 = this.testfunc(arr1, {});
-    console.log(test2);
-    let test3 = {};
-    test3['test'] = {};
-    test3['test']['post'] = {};
-    test3['test']['post']['投稿テスト'] = {};
-    console.log(test3);
+    let resolt = {};
+    res.forEach(titleArr => {
+      this.dirCreate(titleArr, [], resolt);
+    });
+
+    this.map = fromJS(resolt);
+    this.keys = this.map.keySeq().toJS();
   </script>
 
   <style scoped>
-    :scope .wiki-dir-list {
-      white-space: nowrap;
-      height: 7vh;
-      min-height: 5rem;
+    :scope {
+      flex: 1;
       display: flex;
-      align-items: center;
-      margin: 0;
-      margin-left: 3rem;
+      flex-direction: column;
     }
-    :scope .wiki-dir-item {
+    :scope ul.dir {
+      flex: 1;
       margin: 0;
-      display: inline-block;
-      font-size: 2.5rem;
+      list-style: none;
     }
-    :scope .wiki-dir-item > a {
+    :scope li.dir-item {
+      margin: 0;
+      border-bottom: solid thin #aaa;
+    }
+    :scope a.dir-root {
+      margin: 0;
       text-decoration: none;
-      white-space: nowrap;
+      cursor: pointer;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      color: #777;
+      border-bottom: solid thin #aaa;
     }
-    :scope .wiki-dir-item > a.content-link {
-      color: #3b94fb;
+    :scope a.dir-root:hover {
+      color: #0094ff;
     }
-    :scope .wiki-dir-item > a.content-link:hover {
-      color: #72b3fe;
+    :scope li.dir-item > a {
+      background-color: red;
     }
-    :scope .wiki-dir-item > a.list-link {
-      margin-left: 1rem;
-      margin-right: 1rem;
-      color: #aaa;
-    }
-  </style>
+    </style>
 </wiki-dir>

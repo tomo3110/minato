@@ -9,14 +9,11 @@
   </select>
 
   <style scoped>
-  :scope {
-    display: flex;
-  }
-  :scope select.select-box {
-    flex: 1;
-    margin: 0;
-    border: solid thin #ccc;
-    color: #999;
-  }
+    :scope select.select-box {
+      margin: 0;
+      width: 100%;
+      border: solid thin #ccc;
+      color: #999;
+    }
   </style>
 </wiki-select-box>

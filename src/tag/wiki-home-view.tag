@@ -4,9 +4,16 @@ import './wiki-dir';
 <wiki-home-view>
   <wiki-search></wiki-search>
   <section class='home-content'>
-    <wiki-dir store={ opts.store }></wiki-dir>
-    <wiki-posts-list posts={ [] }></wiki-posts-list>
+    <wiki-dir dir={ dir } tree={ tree }></wiki-dir>
+    <section class='home-posts-list'>
+      <wiki-posts-list posts={ opts.list }></wiki-posts-list>
+    </section>
   </section>
+
+  <script>
+    this.tree = opts.tree || [];
+    this.dir = opts.store.content.list.map(item => item.title);
+  </script>
 
   <style scoped>
     :scope {
@@ -18,16 +25,20 @@ import './wiki-dir';
       border-bottom: solid thin #aaa;
     }
     :scope section.home-content {
-      display: flex;
       flex:1;
+      display: flex;
     }
-    :scope wiki-posts-list {
+    :scope .home-posts-list {
       flex: 3;
       margin: 1.5rem;
+      height: 90vh;
       overflow: scroll;
+    }
+    :scope wiki-posts-list {
     }
     :scope wiki-dir {
       flex: 1;
+      overflow: scroll;
       border-right: solid thin #aaa;
     }
   </style>
